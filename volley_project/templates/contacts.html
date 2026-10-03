@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}Контакты — ЖВК МАИ{% endblock %}
+
+{% block content %}
+<div class="page-head">
+    <h1>Контакты</h1>
+    <p class="muted">Как с нами связаться и где нас найти.</p>
+</div>
+
+<div class="cards">
+    <article class="card">
+        <h3> Адрес</h3>
+        <p>
+            г. Москва, Волоколамское шоссе, д. 4<br>
+            МАИ Черепаха
+        </p>
+    </article>
+
+    <article class="card">
+        <h3> Телефон</h3>
+        <p>
+            +7 (499) 158-00-00<br>
+            <span class="muted">Пн–Пт с 10:00 до 20:00</span>
+        </p>
+    </article>
+
+    <article class="card">
+        <h3> Email</h3>
+        <p>
+            <a class="link" href="mailto:volley@mai.ru">volley@mai.ru</a><br>
+            <span class="muted">Ответим в течение 1–2 дней</span>
+        </p>
+    </article>
+
+    <article class="card">
+        <h3> Соцсети</h3>
+        <p>
+            <a class="link" href="https://vk.com" target="_blank">ВКонтакте</a><br>
+            <a class="link" href="https://t.me" target="_blank">Telegram</a>
+        </p>
+    </article>
+</div>
+
+<div class="player-form" style="margin-top: 32px; max-width: 100%;">
+    <h2>Написать нам</h2>
+    <p class="muted">Оставьте сообщение — мы свяжемся с вами.</p>
+
+    <form method="post" action="{{ url_for('contacts') }}">
+        <div class="form-row">
+            <label for="name">Ваше имя</label>
+            <input type="text" id="name" name="name" placeholder="Иван Иванов" required>
+        </div>
+
+        <div class="form-row">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required>
+        </div>
+
+        <div class="form-row">
+            <label for="message">Сообщение</label>
+            <textarea id="message" name="message" rows="5" placeholder="Ваш вопрос или предложение..." required
+                      style="width: 100%; padding: 11px 14px; border: 1px solid var(--color-border);
+                             border-radius: 10px; font-size: 15px; font-family: inherit; resize: vertical;"></textarea>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn">Отправить</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

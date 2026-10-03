@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Галерея — ЖВК МАИ{% endblock %}
+
+{% block content %}
+<div class="page-head">
+    <h1>Галерея команды</h1>
+    <p class="muted">Фотографии с матчей, тренировок и событий команды.</p>
+</div>
+
+<div class="filter-form" style="margin-bottom: 24px;">
+    <h3>Добавить фото</h3>
+    <form method="post" enctype="multipart/form-data">
+        <div class="filter-row">
+            <input type="text" name="title" placeholder="Название фото" required>
+            <input type="text" name="desc" placeholder="Описание">
+        </div>
+        <div class="filter-row" style="margin-top: 10px;">
+            <input type="file" name="photo" accept="image/*" required>
+            <button type="submit" class="btn">Загрузить</button>
+        </div>
+    </form>
+</div>
+
+{% if photos %}
+    <div class="gallery">
+        {% for photo in photos %}
+            <figure class="gallery-item">
+                <img src="{{ photo_url(photo.file) }}"
+                     alt="{{ photo.title }}"
+                     loading="lazy">
+                <figcaption>
+                    <strong>{{ photo.title }}</strong>
+                    <span class="muted">{{ photo.desc }}</span>
+
+                    <a href="{{ url_for('like_photo', photo_id=loop.index0) }}"
+                       class="btn btn-ghost"
+                       style="margin-top: 8px; font-size: 13px; padding: 6px 12px;">
+                        ❤️ {{ photo.likes }}
+                    </a>
+                </figcaption>
+            </figure>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="empty-state">
+        <p>Пока нет фотографий.</p>
+    </div>
+{% endif %}
+{% endblock %}
